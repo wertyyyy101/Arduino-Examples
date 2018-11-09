@@ -1,0 +1,35 @@
+/*
+This sketch was written by SparkFun Electronics,
+with lots of help from the Arduino community.
+This code is completely free for any use.
+Visit http://www.arduino.cc to learn about the Arduino.
+
+Version 2.0 6/2012 MDG
+*/
+
+
+
+int sensorPin = 0;    // The potentiometer is connected to analog pin A0                       
+int ledPin = 13;      // The LED is connected to digital pin 13
+
+
+
+void setup() 
+{
+  
+  pinMode(ledPin, OUTPUT); // This line is the same as "pinMode(13, OUTPUT);"
+}
+
+
+void loop() 
+{
+
+  int sensorValue; // Declaring the variable "sensorValue" as an integer.
+  sensorValue = analogRead(sensorPin); //Setting sensorValue to the knob position of the potentiometer
+  digitalWrite(ledPin, HIGH);     // Turn the LED on
+  delay(sensorValue);             // Pause for sensorValue milliseconds
+  digitalWrite(ledPin, LOW);      // Turn the LED off
+  delay(sensorValue);             // Pause for sensorValue milliseconds                                  
+  
+  //loop() wil repeat forever, so this part of the code will keep running over and over again.
+}
