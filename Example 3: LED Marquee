@@ -1,0 +1,29 @@
+//Creates an array which stores all of our pin values. We will loop through this array when we start displaying our marquee.
+int LED_PINS[] = {6, 9, 11, 10};
+
+//Sets the time between LED switches. Make this value higher or lower to make the marquee slower or faster. 
+int delay_time = 100;
+
+
+void setup() {
+  int i; //Setting up for the next for loop
+  for (i = 0; i <= 3; i++) {
+    pinMode(LED_PINS[i], OUTPUT);
+  }
+  //This for loop will loop through the entire array of LED_PINS by referencing each of the pins and setting them to an output.
+}
+
+void loop() {
+  int j; //Setting up for the next for loop
+  for (j = 0; j <= 3; j++) { //This loop will loop through all of the pins and turn off the previous one, creating a marquee effect.
+    digitalWrite(LED_PINS[j], HIGH); //Next LED turns on
+    if (j != 0) { //Turn off the previous one on the list IF the element number is not 0. There is no -1 element.
+      digitalWrite(LED_PINS[j-1], LOW);
+    }
+    else { //IF the element number IS 0, then turn off the last element in the list. This completes the marquee circle. The marquee will have the last LED stuck on without this code. 
+      digitalWrite(LED_PINS[3], LOW);
+    }
+    delay(delay_time); //Remember to put in a delay or no visible change will be seen! The LEDs will flash faster than out eyes can process. 
+  }  
+
+}
