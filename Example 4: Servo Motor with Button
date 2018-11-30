@@ -1,0 +1,28 @@
+#include <Servo.h>
+Servo servo;
+const int buttonPin = 11; 
+int delaySpeed = 20;
+int position = 0;
+void setup() {
+  servo.attach(9);
+  pinMode(buttonPin, INPUT);
+  Serial.begin(9600);
+
+
+}
+
+void loop() {
+ int buttonState;
+ buttonState = digitalRead(buttonPin);
+ if (buttonState == LOW) {
+    Serial.println(position);
+    position++;
+    servo.write(position);
+    delay(delaySpeed);
+    
+    if (position > 179) {
+      position = 0;
+    }
+ }
+
+}
