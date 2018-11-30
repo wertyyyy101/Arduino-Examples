@@ -23,7 +23,7 @@ void loop() {
     else { //IF the element number IS 0, then turn off the last element in the list. This completes the marquee circle. The marquee will have the last LED stuck on without this code. 
       digitalWrite(LED_PINS[3], LOW);
     }
-    delay(delay_time); //Remember to put in a delay or no visible change will be seen! The LEDs will flash faster than out eyes can process. 
+    delay(delay_time); //Remember to put in a delay or no visible change will be seen! The LEDs will flash faster than our eyes can process. 
   }  
 
 }
