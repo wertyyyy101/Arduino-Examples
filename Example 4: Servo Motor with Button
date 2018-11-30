@@ -1,27 +1,25 @@
-#include <Servo.h>
-Servo servo;
-const int buttonPin = 11; 
-int delaySpeed = 20;
-int position = 0;
+#include <Servo.h> //Imports the servo library
+Servo servo; //Declares the servo
+const int buttonPin = 11; //The pin that the button is connected to 
+int delaySpeed = 15; //How fast the servo goes. Don't set this value to be too low, otherwise the servo won't have enough time to spin before the delay is over.
+int position = 0; //Servoes cannot turn a full 360 degrees. Instead, servos have a 180 degree range of motion. The variable keeps track of the position of the servo.
 void setup() {
-  servo.attach(9);
-  pinMode(buttonPin, INPUT);
-  Serial.begin(9600);
+  servo.attach(9); //Attaches the servo to pin 9. Servos need constant signals, so this command tells the Arduino to start the communication between the servo and the Arduino.
+  pinMode(buttonPin, INPUT); //Sets the button to be an input.
 
 
 }
 
 void loop() {
- int buttonState;
- buttonState = digitalRead(buttonPin);
- if (buttonState == LOW) {
-    Serial.println(position);
-    position++;
-    servo.write(position);
-    delay(delaySpeed);
+ int buttonState; //Sets up a variable for the state of button. Unlike outputs, LOW means that the button is pressed and HIGH means that the button is not pressed.
+ buttonState = digitalRead(buttonPin); //Reads the button pin and sets the state accordingly.
+ if (buttonState == LOW) { //If the button is pressed...
+    position++; //Increase the position variable by 1
+    servo.write(position); //Turn the servo by 1 degree.
+    delay(delaySpeed); //Delay for delaySpeed milliseconds.
     
-    if (position > 179) {
-      position = 0;
+    if (position > 179) { //If the position reaches 180...
+      position = 0; //Reset it back to 0.
     }
  }
 
